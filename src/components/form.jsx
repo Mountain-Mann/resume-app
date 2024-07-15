@@ -1,11 +1,27 @@
 import React, { useState } from "react";
+import EducationalExperience from "./education.jsx";
+import GeneralInfo from "./contact.jsx";
+import PracticalExperience from "./practical.jsx";
+
+const educationalExperiences = [
+  {
+    schoolName: 'School Name 1',
+    titleOfStudy: 'Title of Study 1',
+    dateOfStudy: 'Date of Study 1',
+  },
+  {
+    schoolName: 'School Name 2',
+    titleOfStudy: 'Title of Study 2',
+    dateOfStudy: 'Date of Study 2',
+  },
+]
 
 const Form = () => {
   const [educationalExperiences, setEducationalExperiences] = useState([]);
   const [practicalExperiences, setPracticalExperiences] = useState([]);
 
   const handleEducationalExperiencesChange = (newExperience) => {
-    setEducationalExperiences([...educationalExperiences, newExperience]);
+    setEducationalExperiences((prevExperiences) => [...prevExperiences, newExperience]);
   };
 
   const handlePracticalExperiencesChange = (newExperience) => {
@@ -19,32 +35,15 @@ const Form = () => {
 
   return (
     <div>
-      <h1>Resume Form</h1>
-
       <form>
-        <h2>Educational Experiences</h2>
-        {educationalExperiences.map((experience, index) => (
-          <div key={index}>
-            <input type="text" value={experience.schoolName} />
-            <input type="text" value={experience.titleOfStudy} />
-            <input type="date" value={experience.dateOfStudy} />
-          </div>
-        ))}
-         <button onClick={() => { handleEducationalExperiencesChange }}>Add Experience</button>
-
-        <h2>Practical Experiences</h2>
-        {practicalExperiences.map((experience, index) => (
-          <div key={index}>
-            <input type="text" value={experience.companyName} />
-            <input type="text" value={experience.positionTitle} />
-            <input type="date" value={experience.mainResponsibilities} />
-            <input type="date" value={experience.dateFrom} />
-            <input type="date" value={experience.dateUntil} />
-          </div>
-        ))}
-        <button onClick={() => { handlePracticalExperiencesChange }}>Add Experience</button>
-
         <div>
+          <h1>Resume Builder</h1>
+          <GeneralInfo />
+          <br></br>
+          <EducationalExperience />
+          <br></br>
+          <PracticalExperience />
+          <br></br>
           <button type="submit" onClick={handleSubmit}>
             Submit
           </button>
